@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Products</h1>
+<a href="{% url 'products:form' %}">New product</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Stock</th>
+            <th>Score</th>
+            <th>Category</th>
+        </tr>
+    </thead>
+   
+    <tbody>
+         {% for product in products %}
+         <tr>
+            <td>
+                <a href="{% url 'products:details' product.id %}">
+                    {{ product.name }}
+                </a>
+            </td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.score }}</td>
+            <td>{{ product.category }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>    
+
+{% endblock %}
