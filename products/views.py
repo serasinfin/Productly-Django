@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirec
 from .forms import ProductForm
 from .models import Product
 
+
 # Create your views here.
 
 def index(request):
@@ -14,10 +15,11 @@ def index(request):
         context={'products': products}
     )
 
+
 def products_details(request, product_id):
     # try:
     #     product = Product.objects.get(id=product_id)
-        
+
     #     return render(
     #         request,
     #         'products_details.html',
@@ -33,17 +35,18 @@ def products_details(request, product_id):
         context={'product': product}
     )
 
+
 def form(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form_ = ProductForm(request.POST)
+        if form_.is_valid():
+            form_.save()
             return HttpResponseRedirect('/products')
     else:
-        form = ProductForm()
+        form_ = ProductForm()
 
     return render(
         request,
         'product_form.html',
-        {'form': form}
+        {'form': form_}
     )
